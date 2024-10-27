@@ -1,0 +1,12 @@
+{
+  "name": "get-started",
+  "version": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@duplojs/core": "^0.20.0",
+    "@duplojs/node": "^0.2.0"
+  }
+}
