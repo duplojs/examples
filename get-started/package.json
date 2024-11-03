@@ -6,7 +6,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@duplojs/core": "^0.20.0",
+    "@duplojs/core": "^0.20.2",
     "@duplojs/node": "^0.2.0"
   }
 }
