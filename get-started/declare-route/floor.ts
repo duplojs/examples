@@ -1,4 +1,4 @@
-import { useBuilder, Response, makeFloor } from "@duplojs/core";
+import { useBuilder, Response, makeFloor, zod } from "@duplojs/core";
 
 const floor = makeFloor<{foo: "bar", prop: number}>();
 
@@ -11,12 +11,17 @@ const { foo, prop } = floor.pickup(["foo", "prop"]);
 
 export const myRoute = useBuilder()
     .createRoute("GET", "/hello-world")
+    .extract({
+        query:{
+            foo: zod.string()
+        }
+    })
     .handler((pickup) => {
-        // pickup -> floor.pickup
+        const bar = pickup("foo");
 
         return new Response(
             200, 
-            "Hello World", 
+            `Hello ${bar}`, 
             "this is a body"
         );
     });
