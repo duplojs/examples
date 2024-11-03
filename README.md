@@ -8,6 +8,11 @@
 - 📄 [Register](./get-started/declare-route/register.ts)
 - 📄 [Register All](./get-started/declare-route/registerAll.ts)
 
+### 🤲 Get data from request
+- 📄 [Extract](./get-started/extract/extract.ts)
+- 📄 [Deep Extract](./get-started/extract/deep-extract.ts)
+- 📄 [Manage errors](./get-started/extract/manage-errors.ts)
+
 ### ✅ Checkers
 
 #### 🔹 Simple
