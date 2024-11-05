@@ -1,4 +1,4 @@
-import { useBuilder, Response, makeFloor, zod } from "@duplojs/core";
+import { useBuilder, makeFloor, zod, OkHttpResponse } from "@duplojs/core";
 
 const floor = makeFloor<{
 	foo: "bar";
@@ -22,8 +22,7 @@ export const myRoute = useBuilder()
 	.handler((pickup) => {
 		const bar = pickup("foo");
 
-		return new Response(
-			200,
+		return new OkHttpResponse(
 			`Hello ${bar}`,
 			"this is a body",
 		);

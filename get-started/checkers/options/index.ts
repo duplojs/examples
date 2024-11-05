@@ -11,7 +11,8 @@ interface optionsCompareDate {
 
 export const compareDateCheck = createChecker<optionsCompareDate>(
 	"compareDate",
-	{ compareType: "lower" }, // default options value
+	// default options value
+	{ compareType: "lower" },
 )
 	.handler(
 		(input: InputCompareDate, output, options) => {

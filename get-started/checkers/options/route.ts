@@ -13,7 +13,8 @@ useBuilder()
 		compareDateCheck,
 		{
 			input: (pickup) => ({ compared: pickup("body").date }),
-			options: { compareType: "greater" }, // override default options
+			// override default options
+			options: { compareType: "greater" },
 			result: "valid",
 			catch: () => new ConflictHttpResponse("event.expire"),
 		},

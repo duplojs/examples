@@ -29,13 +29,13 @@ useBuilder()
 	.extract({
 		body: zod.object({
 			email: zod.string().email(),
-			password: zod.string().min(8),
+			password: zod.string(),
 		}).strip(),
 	})
 	.check(
 		userExistCheck,
 		{
-			input: (p) => inputUserExist.email(p("body").email),
+			input: (pickup) => inputUserExist.email(pickup("body").email),
 			result: "user.notfound",
 			catch: () => new ConflictHttpResponse("email.taken"),
 		},

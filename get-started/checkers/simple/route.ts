@@ -11,9 +11,12 @@ useBuilder()
 	.check(
 		userExistCheck,
 		{
-			input: (pickup) => pickup("userId"), // data give to checker
-			result: "user.exist", // result expected
-			indexing: "user", // index the result of checker in floor to index "user"
+			// data give to checker
+			input: (pickup) => pickup("userId"),
+			// result expected
+			result: "user.exist",
+			// index the result of checker in floor to index "user"
+			indexing: "user",
 			// if result is not as expected, catch function is called to return specified response
 			catch: () => new NotFoundHttpResponse("user.notfound"),
 		},

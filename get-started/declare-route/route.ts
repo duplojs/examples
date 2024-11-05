@@ -1,9 +1,8 @@
-import { useBuilder, Response } from "@duplojs/core";
+import { useBuilder, OkHttpResponse } from "@duplojs/core";
 
 export const myRoute = useBuilder()
 	.createRoute("GET", "/hello-world")
-	.handler(() => new Response(
-		200,
+	.handler(() => new OkHttpResponse(
 		"Hello World",
 		"this is a body",
 	));

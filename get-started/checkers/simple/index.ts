@@ -3,7 +3,8 @@ import { getUser } from "../user";
 
 export const userExistCheck = createChecker("userExist")
 	.handler(
-		(input: number, output) => { // handler must return result of output function
+		// handler must return result of output function
+		(input: number, output) => {
 			const user = getUser({ id: input });
 
 			if (user) {

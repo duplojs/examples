@@ -9,9 +9,11 @@ useBuilder()
 	})
 	.handler(
 		(pickup) => {
-			const userId = pickup("userId"); // recovering directly the key "userId" of params object.
+			// recovering directly the key "userId" of params object.
+			const userId = pickup("userId");
 
-			console.log(userId); // return userId value from request parameters
+			// return userId value from request parameters
+			console.log(userId);
 
 			return new OkHttpResponse(
 				"user",
@@ -31,9 +33,11 @@ useBuilder()
 	})
 	.handler(
 		(pickup) => {
-			const params = pickup("params"); // recovering "params" object.
+			// recovering "params" object.
+			const params = pickup("params");
 
-			console.log(params.userId); // then recovering the key "userId" of "params" object.
+			// then recovering the key "userId" of "params" object.
+			console.log(params.userId);
 
 			return new OkHttpResponse(
 				"user",
