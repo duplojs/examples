@@ -14,6 +14,7 @@ const { foo, prop } = floor.pickup(["foo", "prop"]);
 
 export const myRoute = useBuilder()
 	.createRoute("GET", "/hello-world")
+	// A step who can enrich floor
 	.extract({
 		query: {
 			foo: zod.string(),
