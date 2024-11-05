@@ -1,26 +1,31 @@
-import { createChecker, createTypeInput, GetTypeInput } from "@duplojs/core";
-import { getUser, type User } from "../user";
+import { createChecker, createTypeInput, type GetTypeInput } from "@duplojs/core";
+import { getUser } from "../user";
 
 export const inputUserExist = createTypeInput<{
 	id: number;
 	email: string;
 }>();
 
-export const userExist = createChecker("userExist")
-    .handler(
-        ({ inputName, value }: GetTypeInput<typeof inputUserExist>, output) => {
-            let user: User | undefined;
+// inputUserExist.id(123);
+// inputUserExist.email("foo");
 
-            if (inputName === "id") {
-                user = getUser({ id: value });
-            } else {
-                user = getUser({ email: value });
-            }
+export const userExistCheck = createChecker("userExist")
+	.handler(
+		({ inputName, value }: GetTypeInput<typeof inputUserExist>, output) => {
+			const query: Parameters<typeof getUser>[0] = {};
 
-            if (user) {
-                return output("user.exist", user);
-            }
-                
-            return output("user.notfound", user);
-        },
-    );
+			if (inputName === "id") {
+				query.id = value;
+			} else if (inputName === "email") {
+				query.email = value;
+			}
+
+			const user = getUser(query);
+
+			if (user) {
+				return output("user.exist", user);
+			}
+
+			return output("user.notfound", user);
+		},
+	);
