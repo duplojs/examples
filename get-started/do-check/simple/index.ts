@@ -10,7 +10,7 @@ export const userExistCheck = createChecker("userExist")
 			if (user) {
 				return output("user.exist", user);
 			} else {
-				return output("user.notfound", user);
+				return output("user.notfound", null);
 			}
 		},
 	);
