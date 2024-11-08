@@ -5,11 +5,11 @@ interface InputCompareDate {
 	compared: Date;
 }
 
-interface optionsCompareDate {
+interface OptionsCompareDate {
 	compareType: "greater" | "lower";
 }
 
-export const compareDateCheck = createChecker<optionsCompareDate>(
+export const compareDateCheck = createChecker<OptionsCompareDate>(
 	"compareDate",
 	// default options value
 	{ compareType: "lower" },
