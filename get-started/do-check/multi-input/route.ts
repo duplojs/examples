@@ -2,7 +2,7 @@ import { useBuilder, zod, ConflictHttpResponse, OkHttpResponse, NotFoundHttpResp
 import { inputUserExist, userExistCheck } from ".";
 
 useBuilder()
-	.createRoute("GET", "/user/{id}")
+	.createRoute("GET", "/user/{userId}")
 	.extract({
 		params: {
 			userId: zod.coerce.number(),

@@ -6,8 +6,8 @@ export const inputUserExist = createTypeInput<{
 	email: string;
 }>();
 
-inputUserExist.id(123); // { inputName: "id", value: 123 };
-inputUserExist.email("foo"); // { inputName: "email", value: "foo" };
+// inputUserExist.id(123); { inputName: "id", value: 123 };
+// inputUserExist.email("foo"); { inputName: "email", value: "foo" };
 
 export const userExistCheck = createChecker("userExist")
 	.handler(

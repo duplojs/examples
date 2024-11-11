@@ -2,7 +2,7 @@ import { useBuilder, zod, OkHttpResponse, NotFoundHttpResponse } from "@duplojs/
 import { userExistCheck } from ".";
 
 useBuilder()
-	.createRoute("GET", "/user/{id}")
+	.createRoute("GET", "/user/{userId}")
 	.extract({
 		params: {
 			userId: zod.coerce.number(),
