@@ -28,6 +28,7 @@ export const iWantUserExistByEmail = createPresetChecker(
 	{
 		result: "user.exist",
 		catch: () => new NotFoundHttpResponse("user.notfound"),
+		indexing: "user",
 		transformInput: inputUserExist.email,
 	},
 );
