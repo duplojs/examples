@@ -1,32 +1,34 @@
-import { useBuilder, zod, OkHttpResponse } from "@duplojs/core";
-import { iWantUserExistByEmail } from "../preset";
+import { useBuilder, zod, ForbiddenHttpResponse, NoContentHttpResponse } from "@duplojs/core";
+import { iWantUserExistById } from "../preset";
 
 useBuilder()
-	.createRoute("POST", "/login")
+	.createRoute("DELETE", "/users/{userId}")
 	.extract({
-		body: zod.object({
-			email: zod.string(),
-			password: zod.string()
-		}).strip(),
+		params: {
+			userId: zod.coerce.number(),
+		},
 	})
 	.presetCheck(
-		iWantUserExistByEmail,
-		(pickup) => pickup("body").email,
+		iWantUserExistById,
+		(pickup) => pickup("userId"),
 	)
 	.cut(
 		({ pickup, dropper }) => {
-			const { password } = pickup("user");
+			const { email } = pickup("user");
 
-			return {
-				token: "MySuperToken"
+			if (email === "admin@example.com") {
+				return new ForbiddenHttpResponse("userIsAdmin");
 			}
+
+			return dropper(null);
 		},
-		["token"],
 	)
 	.handler(
 		(pickup) => {
-			const user = pickup("user");
+			const { id } = pickup("user");
 
-			return new OkHttpResponse("user.found", user);
+			// action to delete user
+
+			return new NoContentHttpResponse("user.deleted");
 		},
 	);
