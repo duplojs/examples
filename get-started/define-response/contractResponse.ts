@@ -5,8 +5,19 @@ import { OkHttpResponse, Response, zod, makeResponseContract, ForbiddenHttpRespo
 new Response(200, "SuperInfo", zod.undefined());
 // same as
 new OkHttpResponse("SuperInfo", zod.undefined());
+// same as
+makeResponseContract(OkHttpResponse, "SuperInfo");
 
 new OkHttpResponse(
+	"SuperInfo",
+	zod.object({
+		id: zod.string(),
+		name: zod.string(),
+	}),
+);
+// same as
+makeResponseContract(
+	OkHttpResponse,
 	"SuperInfo",
 	zod.object({
 		id: zod.string(),
@@ -19,4 +30,4 @@ new OkHttpResponse(
 	new ForbiddenHttpResponse("token.invalide", zod.undefined()),
 ];
 // same as
-makeResponseContract(ForbiddenHttpResponse, ["token.expire", "token.invalide"], zod.undefined());
+makeResponseContract(ForbiddenHttpResponse, ["token.expire", "token.invalide"]);
