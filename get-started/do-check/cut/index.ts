@@ -22,7 +22,7 @@ useBuilder()
 
 			return dropper(null);
 		},
-		[]
+		[],
 	)
 	.handler(
 		(pickup) => {

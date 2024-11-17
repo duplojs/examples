@@ -6,7 +6,7 @@ new Response(200, "SuperInfo", zod.undefined());
 // same as
 new OkHttpResponse("SuperInfo", zod.undefined());
 // same as
-makeResponseContract(OkHttpResponse, "SuperInfo");
+makeResponseContract(OkHttpResponse, "SuperInfo")[0];
 
 new OkHttpResponse(
 	"SuperInfo",
@@ -23,7 +23,7 @@ makeResponseContract(
 		id: zod.string(),
 		name: zod.string(),
 	}),
-);
+)[0];
 
 <const>[
 	new ForbiddenHttpResponse("token.expire", zod.undefined()),
