@@ -1,15 +1,15 @@
-import { makeResponseContract, NotFoundHttpResponse, OkHttpResponse, useBuilder, zod, type ZodSpace } from "@duplojs/core";
+import { makeResponseContract, OkHttpResponse, useBuilder, zod, type ZodSpace } from "@duplojs/core";
 import { messageSchema } from "./schema";
-import { iWantUserExist } from "./checker";
+import { iWantReceiverExist, iWantUserExist } from "./checker";
 
 useBuilder()
 	.createRoute("POST", "/users/{receiverId}/messages")
 	.extract({
-		headers: {
-			userId: zod.coerce.number(),
-		},
 		params: {
 			receiverId: zod.coerce.number(),
+		},
+		headers: {
+			userId: zod.coerce.number(),
 		},
 	})
 	.presetCheck(
@@ -17,12 +17,7 @@ useBuilder()
 		(pickup) => pickup("userId"),
 	)
 	.presetCheck(
-		iWantUserExist
-			.rewriteIndexing("receiver")
-			.redefineCatch(
-				() => new NotFoundHttpResponse("receiver.notfound"),
-				makeResponseContract(NotFoundHttpResponse, "receiver.notfound"),
-			),
+		iWantReceiverExist,
 		(pickup) => pickup("receiverId"),
 	)
 	.extract({
