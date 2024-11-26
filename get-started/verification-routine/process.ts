@@ -36,7 +36,7 @@ export const mustBeConnectedProcess = useBuilder()
 		({ pickup, dropper }) => {
 			const { contentAuthorization, options } = pickup(["contentAuthorization", "options"]);
 
-			if (contentAuthorization.role === options.role) {
+			if (contentAuthorization.role !== options.role) {
 				return new ForbiddenHttpResponse("authorization.wrongRole");
 			}
 
