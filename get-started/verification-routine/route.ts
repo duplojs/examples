@@ -1,7 +1,7 @@
 import { makeResponseContract, NoContentHttpResponse, OkHttpResponse, useBuilder, zod } from "@duplojs/core";
 import { iWantUserExistById } from "../do-check/preset";
 import { userSchema } from "./schema";
-import { mustBeConnected, mustBeConnectedBuilder, mustBeConnectedProcess } from "./process";
+import { mustBeConnectedBuilder, mustBeConnectedProcess } from "./process";
 
 useBuilder()
 	.createRoute("GET", "/user")
@@ -24,7 +24,13 @@ useBuilder()
 		makeResponseContract(OkHttpResponse, "user.getSelf", userSchema),
 	);
 
-mustBeConnected
+useBuilder()
+	.preflight(
+		mustBeConnectedProcess,
+		{
+			options: { role: "admin" },
+		},
+	)
 	.createRoute("GET", "/users/{userId}")
 	.extract({
 		params: {

@@ -47,14 +47,6 @@ export const mustBeConnectedProcess = useBuilder()
 	)
 	.exportation(["contentAuthorization"]);
 
-export const mustBeConnected = useBuilder()
-	.preflight(
-		mustBeConnectedProcess,
-		{
-			options: { role: "admin" },
-		},
-	);
-
 export function mustBeConnectedBuilder(options: MustBeConnectedOptions) {
 	return useBuilder()
 		.preflight(
