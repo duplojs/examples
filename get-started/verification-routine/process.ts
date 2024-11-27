@@ -46,3 +46,14 @@ export const mustBeConnectedProcess = useBuilder()
 		makeResponseContract(ForbiddenHttpResponse, "authorization.wrongRole"),
 	)
 	.exportation(["contentAuthorization"]);
+
+export function mustBeConnectedBuilder(options: MustBeConnectedOptions) {
+	return useBuilder()
+		.preflight(
+			mustBeConnectedProcess,
+			{
+				options,
+				pickup: ["contentAuthorization"],
+			},
+		);
+}
