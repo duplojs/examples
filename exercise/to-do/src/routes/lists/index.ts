@@ -2,7 +2,6 @@ import { iWantListExistById, iWantListNameIsAvailable } from "@checkers/list";
 import { makeResponseContract } from "@duplojs/core";
 import { MyDataBase } from "@providers/myDataBase";
 import { listSchema } from "@schemas/list";
-import { taskSchema } from "@schemas/task";
 
 useBuilder()
 	.createRoute("GET", "/lists/{listId}")
@@ -76,23 +75,12 @@ useBuilder()
 	);
 
 useBuilder()
-	.createRoute("GET", "/lists/{listId}/tasks")
-	.extract({
-		params: {
-			listId: zod.coerce.number(),
-		},
-	})
-	.presetCheck(
-		iWantListExistById.rewriteIndexing("list"),
-		(pickup) => pickup("listId"),
-	)
+	.createRoute("GET", "/lists")
 	.handler(
-		async(pickup) => {
-			const { list } = pickup(["list"]);
+		async() => {
+			const lists = await MyDataBase.find("list");
 
-			const tasks = await MyDataBase.find("task", { listId: list.id });
-
-			return new OkHttpResponse("list.tasks.get", tasks);
+			return new OkHttpResponse("lists.get", lists);
 		},
-		makeResponseContract(OkHttpResponse, "list.tasks.get", taskSchema.array()),
+		makeResponseContract(OkHttpResponse, "lists.get", listSchema.array()),
 	);

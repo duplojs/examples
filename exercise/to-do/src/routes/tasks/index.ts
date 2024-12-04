@@ -83,3 +83,24 @@ useBuilder()
 		makeResponseContract(CreatedHttpResponse, "task.update", taskSchema),
 	);
 
+useBuilder()
+	.createRoute("GET", "/lists/{listId}/tasks")
+	.extract({
+		params: {
+			listId: zod.coerce.number(),
+		},
+	})
+	.presetCheck(
+		iWantListExistById.rewriteIndexing("list"),
+		(pickup) => pickup("listId"),
+	)
+	.handler(
+		async(pickup) => {
+			const { list } = pickup(["list"]);
+
+			const tasks = await MyDataBase.find("task", { listId: list.id });
+
+			return new OkHttpResponse("list.tasks.get", tasks);
+		},
+		makeResponseContract(OkHttpResponse, "list.tasks.get", taskSchema.array()),
+	);
