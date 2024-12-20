@@ -1,5 +1,4 @@
 import { iWantListExistById, iWantListNameIsAvailable } from "@checkers/list";
-import { makeResponseContract } from "@duplojs/core";
 import { MyDataBase } from "@providers/myDataBase";
 import { listSchema } from "@schemas/list";
 
@@ -8,6 +7,9 @@ useBuilder()
 	.extract({
 		params: {
 			listId: zod.coerce.number(),
+		},
+		query: {
+			test: zod.string().optional(),
 		},
 	})
 	.presetCheck(

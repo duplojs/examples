@@ -1,4 +1,4 @@
-import { makeResponseContract, type GetTypeInput } from "@duplojs/core";
+import { type GetTypeInput } from "@duplojs/core";
 import { MyDataBase } from "@providers/myDataBase";
 
 interface ListInput {

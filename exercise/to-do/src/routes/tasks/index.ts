@@ -1,6 +1,5 @@
 import { iWantListExistById } from "@checkers/list";
 import { iWantTaskExistById, iWantTaskTitleIsAvailable } from "@checkers/task";
-import { makeResponseContract } from "@duplojs/core";
 import { MyDataBase } from "@providers/myDataBase";
 import { taskSchema } from "@schemas/task";
 
@@ -24,18 +23,19 @@ useBuilder()
 	);
 
 useBuilder()
-	.createRoute("POST", "/tasks")
+	.createRoute("POST", "/lists/{listId}/tasks")
 	.extract({
-		body: zod.object({
+		params: {
 			listId: zod.number(),
+		},
+		body: zod.object({
 			title: zod.string(),
 			description: zod.string(),
-			completed: zod.boolean(),
 		}),
 	})
 	.presetCheck(
-		iWantListExistById,
-		(pickup) => pickup("body").listId,
+		iWantListExistById.rewriteIndexing("list"),
+		(pickup) => pickup("listId"),
 	)
 	.presetCheck(
 		iWantTaskTitleIsAvailable,
@@ -43,9 +43,16 @@ useBuilder()
 	)
 	.handler(
 		async(pickup) => {
-			const { body } = pickup(["body"]);
+			const { body, list } = pickup(["body", "list"]);
 
-			const newTask = await MyDataBase.create("task", body);
+			const newTask = await MyDataBase.create(
+				"task",
+				{
+					...body,
+					listId: list.id,
+					completed: false,
+				},
+			);
 
 			return new CreatedHttpResponse("task.create", newTask);
 		},
@@ -68,6 +75,10 @@ useBuilder()
 		iWantTaskExistById.rewriteIndexing("task"),
 		(pickup) => pickup("taskId"),
 	)
+	.presetCheck(
+		iWantTaskTitleIsAvailable,
+		(pickup) => pickup("body").title,
+	)
 	.handler(
 		async(pickup) => {
 			const { body, task } = pickup(["body", "task"]);
@@ -78,9 +89,9 @@ useBuilder()
 				body,
 			);
 
-			return new CreatedHttpResponse("task.update", updatedTask);
+			return new OkHttpResponse("task.update", updatedTask);
 		},
-		makeResponseContract(CreatedHttpResponse, "task.update", taskSchema),
+		makeResponseContract(OkHttpResponse, "task.update", taskSchema),
 	);
 
 useBuilder()

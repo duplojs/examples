@@ -1,9 +1,9 @@
-import { type GetTypeInput, makeResponseContract } from "@duplojs/core";
+import { type GetTypeInput } from "@duplojs/core";
 import { MyDataBase } from "@providers/myDataBase";
 
 interface TaskInput {
 	id: number;
-	title: string;
+	title: string | undefined;
 }
 
 export const taskInput = createTypeInput<TaskInput>();
@@ -11,6 +11,10 @@ export const taskInput = createTypeInput<TaskInput>();
 const taskExistCheck = createChecker("taskExist")
 	.handler(
 		async(input: GetTypeInput<typeof taskInput>, output) => {
+			if (input.inputName === undefined) {
+				return output("task.notExist", null);
+			}
+
 			const task = await MyDataBase.findOne(
 				"task",
 				{ [input.inputName]: input.value },
