@@ -26,7 +26,7 @@ useBuilder()
 	.createRoute("POST", "/lists/{listId}/tasks")
 	.extract({
 		params: {
-			listId: zod.number(),
+			listId: zod.coerce.number(),
 		},
 		body: zod.object({
 			title: zod.string(),

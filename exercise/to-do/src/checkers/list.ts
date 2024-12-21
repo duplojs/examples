@@ -38,9 +38,9 @@ export const iWantListNameIsAvailable = createPresetChecker(
 	listExistCheck,
 	{
 		result: "list.notExist",
-		catch: () => new NotFoundHttpResponse("list.alreadyUse"),
+		catch: () => new ConflictHttpResponse("list.alreadyUse"),
 		transformInput: listInput.name,
 	},
-	makeResponseContract(NotFoundHttpResponse, "list.alreadyUse"),
+	makeResponseContract(ConflictHttpResponse, "list.alreadyUse"),
 );
 

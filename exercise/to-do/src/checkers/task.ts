@@ -42,9 +42,9 @@ export const iWantTaskTitleIsAvailable = createPresetChecker(
 	taskExistCheck,
 	{
 		result: "task.notExist",
-		catch: () => new NotFoundHttpResponse("task.alreadyUse"),
+		catch: () => new ConflictHttpResponse("task.alreadyUse"),
 		transformInput: taskInput.title,
 	},
-	makeResponseContract(NotFoundHttpResponse, "task.alreadyUse"),
+	makeResponseContract(ConflictHttpResponse, "task.alreadyUse"),
 );
 
