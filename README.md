@@ -2,6 +2,13 @@
 
 ## 🚀 Get Started
 
+<<<<<<< HEAD
+### 🛤️ Declare Route        
+- 📄 [Route](./get-started/declare-route/route.ts)
+- 📄 [Floor](./get-started/declare-route/floor.ts)
+- 📄 [Register](./get-started/declare-route/register.ts)
+- 📄 [Register All](./get-started/declare-route/registerAll.ts)
+=======
 ### 🛤️ First Route
 - 📄 [Route](./get-started/first-route/route.ts)
 - 📄 [Floor](./get-started/first-route/floor.ts)
@@ -9,12 +16,20 @@
 - 📄 [Register All](./get-started/first-route/register-all.ts)
 - 📄 [Informations](./get-started/first-route/informations.ts)
 - 📄 [Preset Response](./get-started/first-route/preset-response.ts)
+>>>>>>> 4ded922f662143e7c402f4e07bcb2e9a103d59cb
 
+<<<<<<< HEAD
+### 🤲 Get data from request
+- 📄 [Extract](./get-started/extract/extract.ts)
+- 📄 [Manage errors](./get-started/extract/manage-errors.ts)
+
+=======
 ### 🤲 Get data from request
 - 📄 [Extract](./get-started/getting-data-from-request/extract.ts)
 - 📄 [Deep Extract](./get-started/getting-data-from-request/deep-extract.ts)
 - 📄 [Manage errors](./get-started/getting-data-from-request/manage-errors.ts)
 
+>>>>>>> 4ded922f662143e7c402f4e07bcb2e9a103d59cb
 ### ✅ Checkers
 
 #### 🔹 Simple
