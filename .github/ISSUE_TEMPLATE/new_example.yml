@@ -1,0 +1,64 @@
+name: New Example
+title: "[Example]: "
+description: "Use this template to propose a new example for the project."
+labels: ["new-example"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Example Proposal
+
+  - type: textarea
+    id: example_description
+    attributes:
+      label: Example Description
+      description: Describe the example in detail.
+      placeholder: |
+        Provide a detailed description of the example.
+    validations:
+      required: true
+
+  - type: textarea
+    id: relevance
+    attributes:
+      label: Relevance
+      description: Explain why this example is relevant to the project.
+      placeholder: |
+        Explain why this example is relevant to the project.
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Technical Details
+
+  - type: dropdown
+    id: duplo_version
+    attributes:
+      label: Duplo Version
+      description: Select the Duplo version that the example is compatible with.
+      options:
+        - 0.x
+        - 1.x
+      default: 0
+    validations:
+      required: true
+
+  - type: input
+    id: other_packages
+    attributes:
+      label: Other Packages
+      description: List any other packages that the example depends on.
+      placeholder: |
+        vitest, tsx, etc.
+  
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/duplojs/examples?tab=coc-ov-file). 
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

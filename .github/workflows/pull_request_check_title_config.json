@@ -1,0 +1,14 @@
+{
+	"LABEL": {
+		"name": "wrong title",
+		"color": "f00020"
+	},
+	"CHECKS": {
+		"regexp": "^((example|fix)\\(([a-z]+|hf)\\)|update):"
+	},
+	"MESSAGES": {
+		"success": "All OK",
+		"failure": "Failing CI test",
+		"notice": "Only prefix '[example | fix]' is accepted."
+	}
+}

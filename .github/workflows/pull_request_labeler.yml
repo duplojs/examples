@@ -1,0 +1,52 @@
+name: Pull Request Auto Labeler
+
+on: pull_request
+
+jobs:
+  label-pr:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const body = pr.body;
+            
+            function extractTableValue(body, field) {
+              const regex = new RegExp(`\\|\\s*${field}\\s*\\|([^|]+)\\|`);
+              return body.match(regex)?.[1]?.trim();
+            }
+            
+            const duploVersion = extractTableValue(body, 'Duplo Version');
+            const tsVersion = extractTableValue(body, 'TypeScript Version');
+            const mainPackages = extractTableValue(body, 'Main Packages');
+            
+            const labels = [];
+            
+            if (duploVersion) {
+              labels.push(`duplo-${duploVersion}`);
+            }
+            
+            if (tsVersion) {
+              labels.push('typescript');
+            }
+            
+            if (mainPackages) {
+              const packages = mainPackages.split(',').map(p => p.trim().toLowerCase());
+              for (const pkg of packages) {
+                if (pkg) labels.push(`pkg-${pkg}`);
+              }
+            }
+            
+            labels.push('new-example');
+            
+            if (labels.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+                labels: labels
+              });
+            }
