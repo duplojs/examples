@@ -20,13 +20,13 @@ useBuilder()
 				return new ForbiddenHttpResponse("userIsAdmin");
 			}
 
-			return dropper(null);
+			return dropper({ someData: "!false its true" });
 		},
-		[],
+		["someData"],
 	)
 	.handler(
 		(pickup) => {
-			const { id } = pickup("user");
+			const { user, someData } = pickup(["user", "someData"]);
 
 			// action to delete user
 
