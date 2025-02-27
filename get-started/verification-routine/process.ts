@@ -1,19 +1,18 @@
-import { ForbiddenHttpResponse, makeResponseContract, useBuilder, zod } from "@duplojs/core";
+import { createProcess, ForbiddenHttpResponse, makeResponseContract, useBuilder, zod } from "@duplojs/core";
 import { valideTokenCheck } from "./checker";
 
 interface MustBeConnectedOptions {
 	role: "user" | "admin";
 }
 
-export const mustBeConnectedProcess = useBuilder()
-	.createProcess(
-		"mustBeConnected",
-		{
-			options: <MustBeConnectedOptions>{
-				role: "user",
-			},
+export const mustBeConnectedProcess = createProcess(
+	"mustBeConnected",
+	{
+		options: <MustBeConnectedOptions>{
+			role: "user",
 		},
-	)
+	},
+)
 	.extract(
 		{
 			headers: {

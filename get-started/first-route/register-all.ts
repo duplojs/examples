@@ -1,8 +1,8 @@
-import { Duplo, useBuilder } from "@duplojs/core";
+import { Duplo, useRouteBuilder } from "@duplojs/core";
 import "./route";
 
 const duplo = new Duplo({
 	environment: "TEST",
 });
 
-duplo.register(...useBuilder.getAllCreatedDuplose());
+duplo.register(...useRouteBuilder.getAllCreatedRoute());

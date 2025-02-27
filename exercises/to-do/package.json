@@ -2,19 +2,15 @@
   "name": "to-do",
   "type": "module",
   "scripts": {
-    "dev": "tsx --watch src/main.ts",
-    "generate:types": "duplojs-types-codegen --import @duplojs/node/globals -i 'src/routes/**/*.ts' -o codegenTypes.d.ts",
-    "generate:types:watch": "duplojs-types-codegen --import @duplojs/node/globals -i 'src/routes/**/*.ts' -o codegenTypes.d.ts -w"
+    "dev": "tsx --watch src/main.ts"
   },
   "dependencies": {
     "@duplojs/core": "^1.0.0-beta",
-    "@duplojs/http-client": "0.2.3",
     "@duplojs/utils": "^0.2.1",
     "@duplojs/node": "^1.0.0-beta"
   },
   "devDependencies": {
     "@duplojs/eslint": "0.4.0",
-    "@duplojs/types-codegen": "^0.3.0",
     "@types/node": "^22.9.0",
     "eslint": "^9.14.0",
     "tsx": "^4.19.2",

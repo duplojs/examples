@@ -1,8 +1,8 @@
 import { IWantUserExistById } from "@checkers/user";
+import { createProcess } from "@duplojs/core";
 import { AccessTockenService } from "@services/accessToken";
 
-export const mustBeConnnectedProcess = useBuilder()
-	.createProcess("mustBeConnnected")
+export const mustBeConnnectedProcess = createProcess("mustBeConnnected")
 	.extract({
 		headers: {
 			"access-token": zod.string().optional(),

@@ -1,4 +1,4 @@
-import { Duplo, useBuilder } from "@duplojs/core";
+import { Duplo, useRouteBuilder } from "@duplojs/core";
 import "@duplojs/node";
 import "@duplojs/node/globals";
 import "@routes";
@@ -9,9 +9,7 @@ const duplo = new Duplo({
 	port: 8080,
 });
 
-duplo.register(
-	...useBuilder.getAllCreatedDuplose(),
-);
+duplo.register(...useRouteBuilder.getAllCreatedRoute());
 
 await duplo.launch(
 	() => void console.log("Duplo is ready !"),

@@ -1,4 +1,4 @@
-import { getTypedEntries, hasKey } from "@duplojs/core";
+import { getTypedEntries, hasKey } from "@duplojs/utils";
 
 export interface Task {
 	id: number;

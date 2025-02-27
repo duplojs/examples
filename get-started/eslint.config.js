@@ -4,5 +4,9 @@ export default [
 	{
 		...duplojsEslintBase,
 		files: ["**/*.{ts,js}"],
+		rules: {
+			...duplojsEslintBase.rules,
+			"@stylistic/js/line-comment-position": "off",
+		},
 	},
 ];
