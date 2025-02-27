@@ -7,7 +7,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@duplojs/core": "0.23.2"
+    "@duplojs/core": "^1.0.0-beta"
   },
   "devDependencies": {
     "@duplojs/eslint": "0.4.0",
