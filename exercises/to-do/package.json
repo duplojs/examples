@@ -5,9 +5,9 @@
     "dev": "tsx --watch src/main.ts"
   },
   "dependencies": {
-    "@duplojs/core": "^1.0.0-beta",
-    "@duplojs/utils": "^0.2.1",
-    "@duplojs/node": "^1.0.0-beta"
+    "@duplojs/core": "1.0.1",
+    "@duplojs/utils": "0.2.1",
+    "@duplojs/node": "1.0.1"
   },
   "devDependencies": {
     "@duplojs/eslint": "0.4.0",
