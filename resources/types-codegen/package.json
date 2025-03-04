@@ -1,0 +1,21 @@
+{
+  "type": "module",
+  "scripts": {
+    "dev": "tsx --watch src/main.ts",
+    "generate-types": "duplojs-types-codegen --import @duplojs/node/globals --include src/routes/index.ts --output src/types/duplojsTypesCodegen.d.ts",
+    "generate-types:watch": "duplojs-types-codegen --watch --import @duplojs/node/globals --include src/routes/index.ts --output src/types/duplojsTypesCodegen.d.ts",
+    "generate-types:manual": "tsx src/bin/generateTypes.ts"
+  },
+  "dependencies": {
+    "@duplojs/core": "1.0.1",
+    "@duplojs/node": "1.0.1"
+  },
+  "devDependencies": {
+    "@duplojs/types-codegen": "1.0.0",
+    "@duplojs/eslint": "0.4.0",
+    "@types/node": "^22.10.5",
+    "eslint": "^9.17.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
