@@ -2,8 +2,18 @@ import "@duplojs/node";
 import { Duplo, NotFoundHttpResponse, UnprocessableEntityHttpResponse, useProcessBuilder, useRouteBuilder } from "@duplojs/core";
 import { myPlugin } from "./plugin";
 
+declare module "@duplojs/core" {
+	interface DuploConfig {
+		myNewOptions: boolean;
+	}
+
+	interface Environments {
+		FOO: true;
+	}
+}
+
 const duplo = new Duplo({
-	environment: "DEV",
+	environment: "FOO",
 	port: 1506,
 	host: "localhost",
 	plugins: [myPlugin({ disabledOptimization: true })],
@@ -11,6 +21,7 @@ const duplo = new Duplo({
 	recieveFormDataOptions: {
 		uploadDirectory: "/my-super-folder",
 	},
+	myNewOptions: false,
 });
 
 duplo.register(...useProcessBuilder.getAllCreatedProcess());

@@ -34,9 +34,6 @@
 		"@checkers/*": ["src/checkers/*"],
 		"@providers/*": ["src/providers/*"],
 		"@schemas/*": ["src/schemas/*"],
-		"@services/*": ["src/services/*"],
-		"@security/*": ["src/security/*"],
-		"@envs": ["src/envs.ts"],
 	},                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */

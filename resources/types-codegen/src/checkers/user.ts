@@ -43,3 +43,13 @@ export const IWantUserExistById = createPresetChecker(
 	},
 	makeResponseContract(NotFoundHttpResponse, "user.notfound"),
 );
+
+export const IWantUserNameIsAvailable = createPresetChecker(
+	userExistCheck,
+	{
+		transformInput: userExistInput.name,
+		result: "user.notfound",
+		catch: () => new ConflictHttpResponse("user.name.alreadyUse"),
+	},
+	makeResponseContract(ConflictHttpResponse, "user.name.alreadyUse"),
+);
